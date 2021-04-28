@@ -1,0 +1,69 @@
+html,body
+{
+    background-color: black;
+    font-family: "Lato", sans-serif;
+    height: 100%;
+    width:100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.sim-box-holder
+{
+    display:flex;
+    flex-flow: column;
+    height:100%;
+}
+
+.nav-wrapper
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 38px;
+}
+
+.left-side
+{
+    display: flex;
+}
+
+.right-side
+{
+    color: white;
+}
+
+.nav-link-wrapper
+{
+    height: 22px;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5s;
+}
+.nav-link-wrapper a
+{
+    color: #8a8a8a;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+.nav-link-wrapper:hover
+{
+    border-bottom: 1px solid white;
+}
+
+.active-nav-link
+{
+    border-bottom: 1px solid white;
+}
+
+.nav-wrapper > .left-side > div
+{
+    margin-right: 20px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+.info
+{
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
