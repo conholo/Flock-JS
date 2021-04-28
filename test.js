@@ -8,58 +8,206 @@ let particleSimulationElement;
 
 const behaviorParameters = {
     alignmentWeight: 1,
-    avoidanceWeight: 1,
+    avoidanceWeight: 0.5,
     cohesionWeight: 0.5,
-    stayInRadiusWeight: 1
+    stayInRadiusWeight: 3
 }
 
 const generalParameters = {
-    maxSpeed: 20,
-    avoidanceMultiplier: 0.5,
+    maxSpeed: 5,
     neighborRadius: 50,
-    driveFactor: 1,
-    particleSpeed: 75,
-    defaultColor: new THREE.Color('white'),
+    maxForce: 1,
+    flyRadius: 850,
+    defaultColor: new THREE.Color('cyan'),
     neighborHeavyColor: new THREE.Color('red')
 }
 
-const particleCount = 1000;
+const particleCount = 600;
 const cubeScale = 1500;
-const behaviors = [];
 
 let flock;
 
-class Agent extends THREE.Mesh{
-    constructor(flock){
-        super(new THREE.SphereGeometry(5, 32, 32),
+function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+class Agent extends THREE.Mesh {
+    constructor(perceptionRadius, maxSpeed, maxForce, flyRadius) {
+        super(new THREE.SphereGeometry(7, 32, 32),
             new THREE.PointsMaterial(
                 {
                     color: 0xffffff,
                     blending: THREE.AdditiveBlending,
                     transparent: true
                 }));
-        this.flock = flock;
+        this.velocity = this.getRandomVelocity(randomIntFromInterval(2, 4));
+        this.acceleration = new THREE.Vector3();
+        this.perceptionRadius = perceptionRadius;
+        this.maxSpeed = maxSpeed;
+        this.maxForce = maxForce;
+        this.flyRadius = flyRadius;
+        this.neighborCount = 0;
     }
 
-    move(velocity, deltaTime) {
-        this.up = velocity.normalize();
-        let scaledVelocity = velocity.multiplyScalar(generalParameters.particleSpeed * deltaTime);
-        this.position.add(scaledVelocity);
+    getRandomVelocity(magnitude) {
+        let randomTheta = randomIntFromInterval(0, 360);
+
+        return new THREE.Vector3(magnitude * Math.cos(randomTheta), magnitude * Math.sin(randomTheta), magnitude * Math.cos(randomTheta));
+    }
+
+    calculateFlock(agents, alignWeight, cohesionWeight, separationWeight, radiusWeight) {
+
+        this.neighborCount = 0;
+        let alignment = this.alignment(agents).multiplyScalar(alignWeight);
+        let cohesion = this.cohesion(agents).multiplyScalar(cohesionWeight);
+        let separation = this.separation(agents).multiplyScalar(separationWeight);
+        let stayInRadius = this.stayInRadius().multiplyScalar(radiusWeight);
+
+        this.acceleration.add(alignment);
+        this.acceleration.add(cohesion);
+        this.acceleration.add(separation);
+        this.acceleration.add(stayInRadius);
+
+        let average = this.neighborCount / 3;
+        let percent = average / 6;
+        let color = new THREE.Color();
+        color = color.lerpColors(generalParameters.defaultColor, generalParameters.neighborHeavyColor, percent);
+        this.material.color = color;
+    }
+
+    move() {
+        this.position.add(this.velocity);
+        this.velocity.add(this.acceleration);
+        this.velocity.clampScalar(-this.maxSpeed, this.maxSpeed);
+        this.acceleration.multiplyScalar(0);
+    }
+
+    setMaxSpeed(value) {
+        this.maxSpeed = value;
+    }
+
+    setNeighborRadius(value) {
+        this.perceptionRadius = value;
+    }
+
+    setMaxForce(value) {
+        this.maxForce = value;
+    }
+
+    setFlyRadius(value) {
+        this.flyRadius = value;
+    }
+
+    alignment(agents) {
+
+        let steering = new THREE.Vector3();
+        let total = 0;
+
+        for (let agent of agents) {
+            if (agent === this)
+                continue;
+
+            let distance = this.position.distanceTo(agent.position);
+
+            if (distance > this.perceptionRadius) continue;
+
+            this.neighborCount++;
+            steering.add(agent.velocity);
+            total++;
+        }
+
+        if (total <= 0) return steering;
+
+        steering.divideScalar(total);
+        steering.setLength(this.maxSpeed);
+        steering.sub(this.velocity);
+        steering.clampScalar(-this.maxForce, this.maxForce);
+
+        return steering;
+    }
+
+    separation(agents) {
+
+        let steering = new THREE.Vector3();
+        let total = 0;
+
+        for (let agent of agents) {
+
+            if (agent === this) continue;
+
+            let distance = this.position.distanceTo(agent.position);
+
+            if (distance > this.perceptionRadius) continue;
+
+            this.neighborCount++;
+            let difference = new THREE.Vector3();
+            difference.subVectors(this.position, agent.position);
+
+            difference.divideScalar(distance * distance);
+            steering.add(difference);
+            total++;
+        }
+
+        if(total <= 0) return steering;
+
+        steering.divideScalar(total);
+        steering.setLength(this.maxSpeed);
+        steering.sub(this.velocity);
+        steering.clampScalar(-this.maxForce, this.maxForce);
+
+        return steering;
+    }
+
+    cohesion(agents) {
+
+        let steering = new THREE.Vector3();
+        let total = 0;
+
+        for (let agent of agents) {
+            if (agent === this) continue;
+
+            let distance = this.position.distanceTo(agent.position);
+
+            if (distance > this.perceptionRadius) continue;
+
+            this.neighborCount++;
+            steering.add(agent.position);
+            total++;
+        }
+
+        if(total <= 0) return steering;
+
+        steering.divideScalar(total);
+        steering.sub(this.position);
+        steering.setLength(this.maxSpeed);
+        steering.sub(this.velocity);
+        steering.clampScalar(-this.maxForce, this.maxForce);
+
+        return steering;
+    }
+
+    stayInRadius() {
+        let centerOffset = new THREE.Vector3(-1, -1, -1);
+        centerOffset.multiply(this.position);
+
+        let percent = centerOffset.length() / this.flyRadius;
+
+        if(percent < 0.9)
+            return new THREE.Vector3();
+
+        return centerOffset.multiplyScalar(percent * percent).normalize();
     }
 }
 
 
 class Flock {
-    constructor(agentCount, driveFactor, maxSpeed, neighborRadius, avoidanceRadiusMultiplier) {
+    constructor(agentCount, maxSpeed, neighborRadius, maxForce, flyRadius) {
         this.agentCount = agentCount;
-        this.driveFactor = driveFactor;
         this.maxSpeed = maxSpeed;
         this.neighborRadius = neighborRadius;
-        this.avoidanceRadiusMultiplier = avoidanceRadiusMultiplier;
+        this.maxForce = maxForce;
+        this.flyRadius = flyRadius;
 
-        this.squareMaxSpeed = this.maxSpeed * this.maxSpeed;
-        this.squareNeighborRadius = this.neighborRadius * this.neighborRadius;
-        this.squareAvoidanceRadius = this.squareNeighborRadius * this.avoidanceRadiusMultiplier * this.avoidanceRadiusMultiplier;
         this.agents = [];
     }
 
@@ -71,39 +219,50 @@ class Flock {
 
             let position = new THREE.Vector3(x, y, z);
 
-            let randomX = Math.floor(Math.random() * (1 - -1 + 1)) + -1;
-            let randomY = Math.floor(Math.random() * (1 - -1 + 1)) + -1;
-            let randomZ = Math.floor(Math.random() * (1 - -1 + 1)) + -1;
-
-
-            const agent = new Agent(this);
-            agent.up = new THREE.Vector3(randomX,randomY,randomZ);
+            const agent = new Agent(generalParameters.neighborRadius, this.maxSpeed, this.maxForce, this.flyRadius);
             agent.translateX(position.x);
             agent.translateY(position.y);
             agent.translateZ(position.z);
 
-
             this.agents.push(agent);
+        }
+
+    }
+
+    updateBoids(alignmentValue, cohesionValue, separationValue, radiusWeight) {
+        for(let boid of this.agents) {
+
+            boid.calculateFlock(this.agents, alignmentValue, cohesionValue, separationValue, radiusWeight);
+            boid.move();
         }
     }
 
     setMaxSpeed(value) {
         this.maxspeed = value;
-        this.squareMaxSpeed = this.maxspeed * this.maxspeed;
+        for(let boid of this.agents) {
+            boid.setMaxSpeed(value);
+        }
     }
 
     setNeighborRadius(value) {
         this.neighborRadius = value;
-        this.squareNeighborRadius = this.neighborRadius * this.neighborRadius;
+        for(let boid of this.agents) {
+            boid.setNeighborRadius(value);
+        }
     }
 
-    setDriveFactor(value) {
-        this.driveFactor = value;
+    setMaxForce(value) {
+        this.maxForce = value;
+        for(let boid of this.agents) {
+            boid.setMaxForce(value);
+        }
     }
 
-    setAvoidanceRadiusMultiplier(value) {
-        this.avoidanceRadiusMultiplier = value;
-        this.squareAvoidanceRadius = this.squareNeighborRadius * this.avoidanceRadiusMultiplier * this.avoidanceRadiusMultiplier;
+    setFlyRadius(value) {
+        this.flyRadius = value;
+        for(let boid of this.agents) {
+            boid.setFlyRadius(value);
+        }
     }
 }
 class ColorGUIHelper {
@@ -124,100 +283,6 @@ class ColorGUIHelper {
 initialize();
 animate();
 
-function alignmentBehavior(agent, flock, context) {
-    if(context.length === 0){
-        return agent.up;
-    }
-
-    let alignmentMove = new THREE.Vector3();
-
-    for(let i = 0; i < context.length; i++){
-        alignmentMove.add(agent.up);
-    }
-
-    alignmentMove.divideScalar(context.length);
-
-    return alignmentMove;
-}
-
-function avoidanceBehavior(agent, flock, context) {
-    if(context.length === 0)
-        return new THREE.Vector3();
-
-    let avoidanceMove = new THREE.Vector3();
-    let avoidCount = 0;
-
-    for(let i = 0; i < context.length; i++){
-
-        let difference = new THREE.Vector3();
-        difference.subVectors(agent.position, context[i].position);
-
-        if(difference.lengthSq() < flock.squareAvoidanceRadius){
-            avoidanceMove.add(difference);
-            avoidCount++;
-        }
-
-    }
-
-    if(avoidCount > 0)
-        avoidanceMove.divideScalar(avoidCount);
-
-    return avoidanceMove;
-}
-
-function cohesionBehavior(agent, flock, context){
-    if(context.length === 0)
-        return new THREE.Vector3();
-
-    let cohesionMove = new THREE.Vector3();
-
-    for(let i = 0; i < context.length; i++){
-        cohesionMove.add(context[i].position);
-    }
-
-    cohesionMove.divideScalar(context.length);
-
-    cohesionMove.sub(agent.position);
-    return cohesionMove;
-}
-
-function stayInRadiusBehavior(agent, flock, context) {
-    let center = new THREE.Vector3();
-    let centerOffset = center.subVectors(center, agent.position);
-    let squared = centerOffset.length();
-    let t = squared / (cubeScale / 2);
-
-    if ( t < 0.9){
-        return new THREE.Vector3();
-    }
-
-    return centerOffset.multiplyScalar(t * t);
-}
-
-function combineBehaviors(behaviors, weights, agent, context, flock) {
-
-    if(weights.length !== behaviors.length)
-        return new THREE.Vector3();
-
-    let moveVector = new THREE.Vector3();
-
-    for(let i = 0; i < behaviors.length; i++){
-        let behaviorMove = behaviors[i](agent, flock, context).multiplyScalar(weights[i]);
-
-        if(behaviorMove === new THREE.Vector3()) continue;
-
-        if(behaviorMove.lengthSq() > weights[i] * weights[i]){
-            behaviorMove.normalize();
-            behaviorMove.multiplyScalar(weights[i]);
-        }
-
-        moveVector.add(behaviorMove);
-    }
-
-    return moveVector;
-}
-
-
 function initialize(){
     clock = new THREE.Clock();
     const aspect = (window.innerWidth ) / (window.innerHeight - 100);
@@ -236,18 +301,13 @@ function initialize(){
     transparentCube.material.transparent = true;
     group.add(transparentCube);
 
-    flock = new Flock(particleCount, generalParameters.driveFactor, generalParameters.maxSpeed, generalParameters.neighborRadius, generalParameters.avoidanceMultiplier);
+    flock = new Flock(particleCount, generalParameters.maxSpeed, generalParameters.neighborRadius, generalParameters.maxForce, generalParameters.flyRadius);
 
     flock.constructAgents(cubeScale);
 
     for(let i = 0; i < flock.agents.length; i++) {
         group.add(flock.agents[i]);
     }
-
-    behaviors.push(alignmentBehavior);
-    behaviors.push(avoidanceBehavior);
-    behaviors.push(cohesionBehavior);
-    behaviors.push(stayInRadiusBehavior);
 
     particleSimulationElement = document.getElementById("flock-sim-parent");
 
@@ -284,53 +344,56 @@ function initGui() {
     let generalParametersFolder = gui.addFolder("General Parameters");
 
 
-    behaviorControlsFolder.add(behaviorParameters, "alignmentWeight", 0, 10)
+    behaviorControlsFolder.add(behaviorParameters, "alignmentWeight", 0, 1)
         .name("Alignment Weight")
         .onChange(function(value) {
             behaviorParameters["alignmentWeight"] = value;
         });
-    behaviorControlsFolder.add(behaviorParameters, "avoidanceWeight", 0, 2)
+    behaviorControlsFolder.add(behaviorParameters, "avoidanceWeight", 0, 1)
         .name("Avoidance Weight")
         .onChange(function(value) {
             behaviorParameters["avoidanceWeight"] = value;
         });
-    behaviorControlsFolder.add(behaviorParameters, "cohesionWeight", 0, 2)
+    behaviorControlsFolder.add(behaviorParameters, "cohesionWeight", 0, 1)
         .name("Cohesion Weight")
         .onChange(function(value) {
             behaviorParameters["cohesionWeight"] = value;
         });
-    behaviorControlsFolder.add(behaviorParameters, "stayInRadiusWeight", 0, 2)
+    behaviorControlsFolder.add(behaviorParameters, "stayInRadiusWeight", 0, 5)
         .name("Stay in Radius Weight")
         .onChange(function(value) {
             behaviorParameters["stayInRadiusWeight"] = value;
         });
 
 
-    generalParametersFolder.add(generalParameters, "driveFactor", .1, 10)
-        .name("Drive Factor")
-        .onChange(function(value){
-            flock.setDriveFactor(value);
-        });
-    generalParametersFolder.add(generalParameters, "avoidanceMultiplier", 0, 2)
-        .name("Avoidance Multiplier")
-        .onChange(function(value){
-            flock.setAvoidanceRadiusMultiplier(value);
-        });
     generalParametersFolder.add(generalParameters, "neighborRadius", 10, 100)
         .name("Neighbor Radius")
         .onChange(function(value){
             flock.setNeighborRadius(value);
         });
 
-    generalParametersFolder.add(generalParameters, "particleSpeed", 10, 300)
-        .name("Particle Speed");
+    generalParametersFolder.add(generalParameters, "maxSpeed", 1, 100)
+        .name("Max Speed")
+        .onChange(function(value) {
+            flock.setMaxSpeed(value);
+        });
+    generalParametersFolder.add(generalParameters, "maxForce", 1, 5)
+        .name("Max Force")
+        .onChange(function(value) {
+            flock.setMaxForce(value);
+        });
+    generalParametersFolder.add(generalParameters, "flyRadius", 5, 1000)
+        .name("Fly Radius")
+        .onChange(function(value) {
+            flock.setFlyRadius(value);
+        });
 
 
     generalParametersFolder.addColor(new ColorGUIHelper(generalParameters,'defaultColor'),'value')
-        .name("Start Color");
+        .name("Scattered Color");
 
     generalParametersFolder.addColor(new ColorGUIHelper(generalParameters,'neighborHeavyColor'),'value')
-        .name("Neighbor Dense Color");
+        .name("Dense Color");
 }
 
 function onWindowResize() {
@@ -340,50 +403,9 @@ function onWindowResize() {
     renderer.setSize( window.innerWidth, window.innerHeight - 100 );
 }
 
-function getNearbyAgents(agent) {
-    let center = agent.position;
-    let neighbors = [];
-
-    for(let i = 0; i < particleCount; i++) {
-        if(agent === flock.agents[i]) continue;
-
-        let otherPosition = flock.agents[i].position;
-
-        let distance =
-            ((otherPosition.x - center.x) * (otherPosition.x - center.x) +
-            (otherPosition.y - center.y) * (otherPosition.y - center.y) +
-            (otherPosition.z - center.z) * (otherPosition.z - center.z));
-
-        if (distance < flock.neighborRadius * flock.neighborRadius)
-            neighbors.push(flock.agents[i]);
-    }
-
-    return neighbors;
-}
-
 function animate() {
 
-    const deltaTime = Math.min(0.1, clock.getDelta());
-
-    for(let i = 0; i < flock.agents.length; i++) {
-        let neighbors = getNearbyAgents(flock.agents[i]);
-        let weights = Object.values(behaviorParameters);
-        let moveVector = combineBehaviors(behaviors, weights, flock.agents[i], neighbors, flock);
-
-        let percent = neighbors.length / 20;
-        let color = new THREE.Color();
-        color = color.lerpColors(generalParameters.defaultColor, generalParameters.neighborHeavyColor, percent);
-        flock.agents[i].material.color = color;
-        moveVector.multiplyScalar(flock.driveFactor);
-
-        if(moveVector.lengthSq() > flock.squareMaxSpeed){
-            moveVector.normalize();
-            moveVector.multiplyScalar(flock.maxSpeed);
-        }
-
-        flock.agents[i].move(moveVector, deltaTime);
-    }
-
+    flock.updateBoids(behaviorParameters.alignmentWeight, behaviorParameters.cohesionWeight, behaviorParameters.avoidanceWeight, behaviorParameters.stayInRadiusWeight)
 
     requestAnimationFrame(animate);
     controls.update();
