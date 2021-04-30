@@ -54,6 +54,16 @@ html,body
     border-bottom: 1px solid white;
 }
 
+.nav-link a:hover
+{
+    color: white;
+}
+
+.active-nav-link a
+{
+    color: white !important;
+}
+
 .nav-wrapper > .left-side > div
 {
     margin-right: 20px;

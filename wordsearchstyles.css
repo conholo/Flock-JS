@@ -1,0 +1,49 @@
+.grid
+{
+    color: white;
+    margin:1em auto; border-collapse:collapse
+}
+
+.grid td
+{
+    cursor:pointer;
+    width:30px; height:30px;
+    border:1px solid #ccc;
+    text-align:center;
+    font-family:sans-serif; font-size:13px
+}
+
+.grid td.clicked
+{
+    background-color:yellow;
+    font-weight:bold; color:red;
+}
+
+.word-search-container
+{
+    color: white;
+}
+
+.user-words-container
+{
+    display: flex;
+    text-align: center;
+    color: white;
+    background-color: blue;
+    position: absolute;
+    width:300px;
+    height: 300px;
+    right: 20%;
+    top: 13%;
+    overflow: scroll;
+}
+
+.user-words-container label{
+
+    color: white;
+    text-align: center;
+}
+
+ol {
+    list-style-type: square;
+}

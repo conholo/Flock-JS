@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="wordsearchstyles.css">
+    <script src="word_search.js" defer></script>
+</head>
+<body>
+    <div class="nav-wrapper">
+        <div class="left-side">
+            <div class="nav-link-wrapper">
+                <a href="home.html">Home</a>
+            </div>
+
+            <div class="nav-link-wrapper">
+                <a href="flocking.html">Flocking Simulation</a>
+            </div>
+
+            <div class="nav-link-wrapper active-nav-link">
+                <a href="wordsearch.html">Word Search</a>
+            </div>
+
+        </div>
+
+        <div class="right-side">
+            <div class="brand">
+                <div>CW</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="word-search-container" id="word-search-container">
+        <form id="word-search-form">
+            <fieldset>
+                <legend>Word Search</legend>
+
+                <p>
+                    Hi!  Welcome to the Word Search Generator!  Please select a difficulty level then start adding <br><br/>
+                    some words.  Depending on the length of the word, the size of your word search (difficulty), not <br><br/>
+                    all words will be added to the word search.  You won't know which words were added, but you will be <br><br/>
+                    notified of the number of words that were added!
+                </p>
+                <br><br/>
+
+                <label>Difficulty:</label>
+                <label>
+                    <input type="radio" name="difficulty" value="very easy">
+                </label>Very Easy
+                <label>
+                    <input type="radio" name="difficulty" value="easy" checked>
+                </label>Easy
+                <label>
+                    <input type="radio" name="difficulty" value="intermediate">
+                </label>Intermediate
+                <label>
+                    <input type="radio" name="difficulty" value="hard">
+                </label>Hard
+
+                <br><br/>
+
+                <label> Enter a word:
+                    <input type="text" id="enter-word-input" onkeyup="validateUserInput()"/>
+                </label>
+                <label id="invalid-input"></label>
+                <br><br/>
+                <button type="button" id="submit-word-button" onclick="onUserSubmitWord()" disabled>Submit Word</button>
+                <br><br/>
+                <button type="submit" disabled id="submit-form-button">Submit Search Data</button>
+
+                <div class="user-words-container">
+                    <label class="user-words-label">Your Words:</label>
+                    <ol id='word-list' class="user-words-list"></ol>
+                </div>
+
+            </fieldset>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

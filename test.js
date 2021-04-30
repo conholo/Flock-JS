@@ -22,7 +22,7 @@ const generalParameters = {
     neighborHeavyColor: new THREE.Color('red')
 }
 
-const particleCount = 600;
+const particleCount = 1000;
 const cubeScale = 1500;
 
 let flock;
@@ -30,6 +30,7 @@ let flock;
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
 
 class Agent extends THREE.Mesh {
     constructor(perceptionRadius, maxSpeed, maxForce, flyRadius) {
@@ -57,10 +58,10 @@ class Agent extends THREE.Mesh {
 
     calculateFlock(agents, alignWeight, cohesionWeight, separationWeight, radiusWeight) {
 
-        this.neighborCount = 0;
-        let alignment = this.alignment(agents).multiplyScalar(alignWeight);
-        let cohesion = this.cohesion(agents).multiplyScalar(cohesionWeight);
-        let separation = this.separation(agents).multiplyScalar(separationWeight);
+        const neighbors = this.getNeighbors(agents);
+        let alignment = this.alignment(neighbors).multiplyScalar(alignWeight);
+        let cohesion = this.cohesion(neighbors).multiplyScalar(cohesionWeight);
+        let separation = this.separation(neighbors).multiplyScalar(separationWeight);
         let stayInRadius = this.stayInRadius().multiplyScalar(radiusWeight);
 
         this.acceleration.add(alignment);
@@ -68,7 +69,7 @@ class Agent extends THREE.Mesh {
         this.acceleration.add(separation);
         this.acceleration.add(stayInRadius);
 
-        let average = this.neighborCount / 3;
+        let average = neighbors.length / 3;
         let percent = average / 6;
         let color = new THREE.Color();
         color = color.lerpColors(generalParameters.defaultColor, generalParameters.neighborHeavyColor, percent);
@@ -98,27 +99,39 @@ class Agent extends THREE.Mesh {
         this.flyRadius = value;
     }
 
-    alignment(agents) {
+    getNeighbors(agents) {
 
-        let steering = new THREE.Vector3();
-        let total = 0;
+        const neighbors = [];
 
-        for (let agent of agents) {
-            if (agent === this)
-                continue;
+        for(let agent of agents) {
 
-            let distance = this.position.distanceTo(agent.position);
+            if(agent === this) continue;
 
-            if (distance > this.perceptionRadius) continue;
+            let offset = new THREE.Vector3();
+            offset = this.position.clone();
+            offset.sub(agent.position);
 
-            this.neighborCount++;
-            steering.add(agent.velocity);
-            total++;
+            let squareMagnitude = offset.lengthSq();
+
+            if(squareMagnitude > this.perceptionRadius * this.perceptionRadius) continue;
+
+            neighbors.push(agent);
         }
 
-        if (total <= 0) return steering;
+        return neighbors;
+    }
 
-        steering.divideScalar(total);
+    alignment(neighbors) {
+
+        let steering = new THREE.Vector3();
+
+        if(neighbors.length <= 0) return steering;
+
+        for (let agent of neighbors) {
+            steering.add(agent.velocity);
+        }
+
+        steering.divideScalar(neighbors.length);
         steering.setLength(this.maxSpeed);
         steering.sub(this.velocity);
         steering.clampScalar(-this.maxForce, this.maxForce);
@@ -126,31 +139,24 @@ class Agent extends THREE.Mesh {
         return steering;
     }
 
-    separation(agents) {
+    separation(neighbors) {
 
         let steering = new THREE.Vector3();
-        let total = 0;
 
-        for (let agent of agents) {
+        if(neighbors.length <= 0) return steering;
 
-            if (agent === this) continue;
+        for (let agent of neighbors) {
 
             let distance = this.position.distanceTo(agent.position);
 
-            if (distance > this.perceptionRadius) continue;
-
-            this.neighborCount++;
             let difference = new THREE.Vector3();
             difference.subVectors(this.position, agent.position);
 
             difference.divideScalar(distance * distance);
             steering.add(difference);
-            total++;
         }
 
-        if(total <= 0) return steering;
-
-        steering.divideScalar(total);
+        steering.divideScalar(neighbors.length);
         steering.setLength(this.maxSpeed);
         steering.sub(this.velocity);
         steering.clampScalar(-this.maxForce, this.maxForce);
@@ -158,26 +164,17 @@ class Agent extends THREE.Mesh {
         return steering;
     }
 
-    cohesion(agents) {
+    cohesion(neighbors) {
 
         let steering = new THREE.Vector3();
-        let total = 0;
 
-        for (let agent of agents) {
-            if (agent === this) continue;
+        if(neighbors.length <= 0) return steering;
 
-            let distance = this.position.distanceTo(agent.position);
-
-            if (distance > this.perceptionRadius) continue;
-
-            this.neighborCount++;
+        for (let agent of neighbors) {
             steering.add(agent.position);
-            total++;
         }
 
-        if(total <= 0) return steering;
-
-        steering.divideScalar(total);
+        steering.divideScalar(neighbors.length);
         steering.sub(this.position);
         steering.setLength(this.maxSpeed);
         steering.sub(this.velocity);
