@@ -1,0 +1,220 @@
+{
+  "character":
+  {
+      "name": "",
+      "class": "",
+      "age": 30
+  },
+  "paths":
+  [
+    {
+      "id": 1,
+      "title": "The Fork",
+      "text": "&emsp;You come across a sign at an intersection joining a well worn path guiding travelers, merchants and adventurers to and fro the Kindom of Valkroth and Juniper.  \"Boldhorsts' Pass\", etched into a rotted post securely implanted at the center of the path.  You remember the Valkroth Elder's warning from the previous night, \"The pass is dangerous - a rickety bridge sways between travelers and the mouth of the casm, the casm itself hides the embrace of the sun, crawling with poisonous fungi and beastly creatures.  Few dare the pass, the path to Valspac, a settlement neighboring Juniper, has not been maintained since the First Eclipse.  Traveler, I know not of what you seek in Juniper, but Boldhorts' Pass will only trouble your efforts...\" ",
+      "choices":
+      {
+        "choice1":
+        {
+          "text": "Cross the rickety bridge to Boldhorts' Pass",
+          "id": 2
+        },
+        "choice2":
+        {
+          "text": "Take the longer, well trodden path to Juniper.",
+          "id": 11
+        }
+      }
+    },
+
+    {
+      "id": 2,
+      "title": "A Bridge Too Far",
+      "text": "&emsp;You laugh in the face of fear, disregarding the Elder's cautioning.  The bridge is strung together with two posts on either end fastened with frayed, rotted rope.  The boards between have lost all semblance of congruence; some pointing diagonally, some split down the middle, others, representing gaps where a board once was.  Before taking your first step onto the dishiveled and forgotten bridge, you glance down, realizing the gravity of your situation.  One mistep, one board too loose and the journey to Juniper would take an unexpected end.  You grip the frayed rope on both sides, giving both a strong tug to ensure their security.  You tap one foot onto the first board, giving way to a crunch and crackle - you wince.  The bridge continues to swing at the mercy of the howling winds of the chasm.  As you step, the bridge responds with despondent, painful creaking - on the verge of giving up entirely.  After arriving halfway across the bridge, you hone in on the remaining 10 boards.  You take one strong step, followed by smaller, lighter steps, gaining speed - the ends of the bridge hiss, followed by a sound similar to a tree being forcefully uprooted by gale, followed by silence for but a moment.  As you turn your head, you see the left post of the bridge rip away from the earth, commanding each board to dance in the wind free from connection.  Adrenaline spikes, your feet begin to move before conscious reaction occurs.  You race against the free-falling boards and rope towards the only promise of solid ground.  With a powerful step, you leap towards the jutting cliff edge.  With both hands you grip rock, spraying chunks of stone into your face.   One hand immediately loses grip - chapped and bloody from the initial impact.  With a bit of momentum you fling your free hand up just above the cliff edge.  In an instant, a large, callous hand wrapped in old cloth grips hold of you.  You hear a heaving grunt, followed by more rock loosing onto your face just before your body is pulled and thrown onto the edge of the cliff.  A man wearing torn cloth and broken sandals falls to the earth, holding what appears to be a deep wound at his torso.",
+      "choices":
+      {
+        "choice1":
+        {
+          "text": "Help the man.",
+          "id": 4
+        },
+        "choice2":
+        {
+          "text": "Walk past the man into the cavern.",
+          "id": 3
+        }
+      }
+    },
+
+    {
+      "id": 3,
+      "title": "Stranger Danger",
+      "text": "&emsp;You stand up to assess your condition.  Fortunately, you're only left with a rip in your trousers, a welt on your thigh and some missing skin on your palm.  You glance down at your savior- a weathered old man, wearing basic peasant garments covered in dirt and blood.  You briskly walk in the direction of the cavern, eager to avoid any unwanted interaction with the strange man.  You think to yourself, \"The man did save me, but I've got an odd feeling about this one and I mustn't be delayed…\"  Out of your periphery you notice the man crawling towards a large stone to prop himself up.  The old man heaves, then grumbles, \"The more you have of it, the less you see, adventurer.  \"  \"No time for your riddles, old fellow.  I greatly appreciate you saving my life but I must be off\", you shout back as you take your first steps into the darkness. <br><br/>\n&emsp;The cavern is silent, besides the occasional dripping from stalactites. The walls are lined with fungi, just as the elder warned.  You travel farther into the caverns past pools of liquid unsafe to drink, let alone smell, unseen cracks leading to treacherous drop-offs leading to further darkness and the ominous sounds of your own footsteps echoing throughout the depths of the cavern. <br><br/>\n&emsp;You approach a gap nestled between two larger boulder.  Between the two boulders, two pillars decorated with thinly carved, stone skirts fixed around the perimeter jut from the sea of black.  You step onto the closest pillar, carefully shimmying around the perimeter until you can safely make contact with the adjacent pillar with an outstretched arm.  As you reach out your arm, you hear a faint, childish laugh from within the shadows below.  \"The darkness must be playing tricks on me…\" you decide.  With your outstretched arm you grab hold of a sturdy protrusion from the pillar, quickly pulling yourself towards the second.  You take a moment to catch your breath.  As you pull out your handkerchief to dry your sweat, you notice a pale blue light fluttering from the endless expanse.  The laughter begins again, but louder and closer, echoing throughout the chamber.  More lights appear from the nothingness, illuminating the chasm separating you and the rest of the pass.  As the laughter begins to intensify, you place your free hand on your ear hoping to soften the maddening echoes.  Your ears begin to ring and your vision begins to blur - instinctively, you close your eyes.  A devilish shrill pierces your thoughts,  \"Darkness\".  You twist your torso in a panic perturbing your equilibrium.  As your balance gives way, your foot clips the edge of the stone skirting causing the thin walkway to crumble.  You let out a muffled scream, falling back into the chasm past the blue lights.\n",
+      "choices":
+      {
+        "choice1":
+        {
+          "text": "Death",
+          "id": 99
+        },
+        "choice2":
+        {
+          "text": "Death",
+          "id": 99
+        }
+      }
+    },
+
+    {
+      "id": 4,
+      "title": "Want a Friend, Be a Friend",
+      "text": "&emsp;You brush yourself off, assessing any injuries.  Aside from torn pants, a bruised thigh from impact against the rock and missing skin on your right palm, you've managed well.  You reach for your savior who is balled up not a meter from you, clutching his torso and bleating in pain.  You prop the man up against the outer wall of the entrance to the cavern, drop your pack to find bandages and a healing salve.  Upon application, the man cries in agony while you apply pressure to his wound.  <br><br/>&emsp;After a few moments, the man takes a deep breath and looks up at you from a vacant stare.  His eyes are filled with circulating, glistening fluid, like how a puddle of oil shimmers in the sun.  \"An Urushol\", you think to yourself.  Once man, now timeless creature imbued with unimaginably powerful magic.  It's said that the Urushol came to be from the First Eclipse - an event that occurred over a millennia ago.  Your grandfather loved to tell the tale, \"It was as if someone pulled on a thread that ran through the fabric of existence!  The darkness spilled out and everyone went to sleep.  They slept for hundreds of years...\" followed by his own early-afternoon slumber.  The Urushol that survived the event were exiled and hunted.  The rest have fled to the outer reaches of civilization.  Since your lifetime, only a handful have been found.  Many kingdoms offer bounties for the capture of an Urushol.  Why one would drift so close to the borders of Valkroth could only be described as suicide.  The only sure distinguishing feature of an Urushol are their eyes; their physical form is in constant flux, shifting radically depending on a number of factors unknown to most men.  The creature's eyes shut, his breathing stopped entirely.  You assess his pulse - to your surprise it's beating exceptionally fast, so fast that it's difficult to determine where one beat starts and another ends.  Against your better judgement, but feeling as though you have a debt to repay, you hoist the lifeless creature over your shoulder.  Looking back at the gap separating you from the intersection on the path, you're left without a choice - into the caverns.  <br><br/>\n&emsp;The cavern is silent, besides the occasional dripping from stalactites, and unbelievably humid.  Warmer than you'd expect, seeing as how the air at the mouth of the cavern was cool and crisp.  You think to yourself, \"At least the old man wasn't lying...\" as you examine rows of bell-shaped fungi coating the ground and walls, with the exception of a narrow path leading deeper into the cave.  The path begins to slope down, leading to a fork in the path, where one path continues down towards an old set of ruins, and the other towards a claustrophobically tight set of boulders that appear to lead into a large room.  As you peer past the tightly packed area of boulders, you notice a golden shimmer against a puddle towards the far end.",
+      "choices":
+      {
+        "choice1":
+        {
+          "text": "Take the path towards the ruins.",
+          "id": 5
+        },
+        "choice2":
+        {
+          "text": "Drop the creature and navigate through the boulders.",
+          "id": 6
+        }
+      }
+    },
+
+    {
+      "id": 5,
+      "title": "In Ruin",
+      "text": "&emsp;The path to the ruins is marked with an elaborately carved stone, spiral staircase leading into a courtyard decorated with six hand-crafted pillars, each carved with the face of one of the members of the kingdom's first counsel.  In the center of courtyard rests a tomb cut into the shape of a diamond.  You carefully inspect the tomb, noticing that whatever once lay eternal had since been exhumed.  You conclude this must have occurred recently given that a set of fresh, muddy prints from a lesser creature painted the corner of the burial.  You decide to set up camp for the night adjacent to one of the four colonnades of the courtyard.  You place the unconscious body on the ground, resting it's head against a small plinth holding up a cracked vase.  You take a seat next to the creature's body.  Up close to the Urushol, the silence of the cavern is lost to the low, consistent beating of the creature's heart.  You extinguish your torch and drift off to sleep listening to the somewhat living metronome that lay beside you.<br><br/>\n&emsp;You wake disoriented and alert.  Without any light for reference, your rest could have been moments or hours.  You determine you hadn't been asleep that long given that your torch was still hot to the touch.  You quickly realize the pounding of the creature's heart wasn't present to override the silence of the cavern.  Moments pass and the silence breaks.  High-pitch, squeaks and grunts of what sound like small rodents take its place originating from the center of the courtyard.  From behind the plinth where the Urushol rested, you peer towards the origin of the sounds.  You observe four small creatures carrying torches and clubs moving towards an exit created by the collapse of a section of the courtyard - the largest of the four creatures dragging the Urushol.",
+      "choices":
+      {
+        "choice1":
+        {
+          "text": "Fight the creatures.",
+          "id": 9
+        },
+        "choice2":
+        {
+          "text": "Sneak past the creatures.",
+          "id": 10
+        }
+      }
+    },
+
+
+    {
+      "id": 6,
+      "title": "Fools Gold",
+      "text": "&emsp;You carefully set the creature down by the junction, leaving a small canteen filled with water in the event that it wakes, despite being unsure if the Urushol even drink water.  You assess the row of boulders wedged between the passage.  Many large boulders stacked at the top, sitting just above smaller boulders below.  You kick a smaller rock checking the stability of the structure - no movement.  You drop down into a prone position to navigate a path fit for a child.  You begin to crawl under the rocky formation, careful not to dislodge any rocks holding the largest of the boulders in place.  A light flickers past the edge of the passage.  The light catches a piece of metal wedged in a crack just ahead.  You crawl forward, roll to your side and shuffle your hands to grab the object.  A golden coin.  The perimeter of the coin is etched with writing in a language you don't understand.  A crest is etched into the center of the coin, one that you don't recognize.  You place the coin in your pocket.  You continue crawling towards the end of the small passage.  Arriving at the exit, you push yourself up and wipe dirt and stone off of your clothes.  <br> <br/> &emsp;As you look up for the first time, embers burn in the center of a large room, producing just enough light to illuminate piles of glistening coin, chests, ornate jewels and parchment.  Adjacent to the embers lay a clump of armor, soot and bone.  Fortunately, your instincts precede your earthly desires - tuning out the overload of satisfying visual stimuli, you attune your senses to the sound of breathing - long, slow, powerful breathing.  Heading the warnings, you drop down to all fours to prepare to exit through the small passage from which you came.  As you begin moving forward, your left hand catches a crack between two smaller rocks, carrying a pillar of larger stones.  The smaller rocks give way, agitating the structure just enough to displace the larger rocks, cascading up to the largest boulders.  Boulders begin to tumble, causing the room to shake, breaking delicate formations from the ceiling of the cavern, causing all that was once still to stir. <br> <br/>&emsp;You dive away from a falling boulder large enough to crush a cart, rolling towards the embers.  You stand up, covered in soot and wet from perturbed stalactites releasing their moisture.  The sounds from the distressed cavern were proceeded by another sound, one much more alive, one much more disturbed.  Large booming steps came crawling from the opposite side of the treasure, flames erupted around the corner, filling the cavern with a deadly inferno.  Below your feet, near the pile of bones and embers lay a steel tower shield half the size of a full-grown man.  You quickly grasp the handle, firmly plant the shield in the dirt as to cover your feet and crouch down to protect your face.  Your shield is worked like raw metal at a blacksmiths furnace - heated to incandescence.  The inferno ceases for a moment, only to be followed by a tremendous roar, throwing you backwards into the pile of coin.  You struggle to crawl your way out of the sea of gold, eventually surfacing for a moment of air, only to be met with a fate worse than drowning in riches. <br> <br/>&emsp;\"The greed of man knows no bounds!\", roared the enormous creature.  Red, shimmering scales adorned with golden flecks plated the dragon's entire body.  Blood-red talons as large as a horse, ivory-white teeth the size of a man. The dragon cocked it's head curiously, \"Where is your raiding party?  Where is your blade?  How do you intend on bringing your king my head?\"  It paused for a moment, dropping its head as to examine you more closely.  \"But you're a mere child!\", the dragon boomed in laughter, causing more rock to dislodge from the cavern walls.  The dragon cocked it's head again, moving in even closer as if to smell you.  The dragon reeled back its head and exclaimed, \"Where is it!?  Where is the Old One?!  I smell it on you!\"  The dragon raised its enormous neck up to the top of the cavern to let out a fiery burst, coating the ceiling of the cavern in flames.  \"I have a proposition, small creature.  Bring me the Urushol and I'll let you live - an Urushol feast is next to none.  Otherwise, I'll see to your quick end.\"",
+      "choices":
+      {
+        "choice1":
+        {
+          "text": "Sacrifice the Urushol to the dragon.",
+          "id": 7
+        },
+        "choice2":
+        {
+          "text": "Fight the dragon to protect the Urushol.",
+          "id": 8
+        }
+      }
+    },
+
+    {
+      "id": 7,
+      "title": "An Eye for an Eye",
+      "text": "&emsp;With one sweep of his enormous hand, the dragon clears the rubble leading back to the Urushol.  \"Now go!\", the dragon boomed.  You clumsily sprint down the piles of gold towards the newly cleared path.  As you approach the intersection where you left the creature you think to yourself, \"Why would the dragon need me to bring him the Urushol?  If he so desperately desires the creature then he's more than capable of fetching it himself!  And he surely won't be giving me any of his treasures!  I'll be his dessert once he gets through with the -\" your train of thought is interrupted by an empty plot of dirt where the Urushol lay not hours before.  You begin to panic.  \"Where would the creature have gone?  If I don't deliver it to the dragon then he'll surely find me.\" You search for a few moments before finding a small piece of parchment less than a few meters from the intersection floating in a small pool.  You snatch the page from the pool, shake it off to relieve any excess moisture, then begin to read.  \"To give me to someone I don't belong to is considered cowardly, but to take me is considered to be noble. A game played by many, winners there are none.  What am I, Adventurer?\"  Without having time to consider the cryptic nature of the message, you hear a shriek and a loud crash in the direction of the dragon's lair followed by silence.   You pocket the note and begin running back towards the dragon's lair to inspect the sound<br><br/> \n&emsp;You arrive at the head of the path just before the rubble cleared away by the dragon.  The dancing embers at the center of the lair had all but extinguished, providing only a shred of light.  As you approach the lair, you sense something unusual in the air.  The glint of coins was nonexistent, the smell of charred flesh and cloth had vanished and the deep hum of the dragon's breathing had ceased.  Panning around the room, you notice a figure standing still where the dragon once was.  A deep voice echoed throughout the chamber originating from the figure's position, \"Blame\".  Within a moment, the figure appeared within feet from your position.  As it took a step closer, the face of the Urushol appeared.  It's yellow, oily eyes began to diffuse into a darker red, more akin to a pool of blood.",
+      "choices":
+      {
+        "choice1":
+        {
+          "text": "Death",
+          "id": 100
+        },
+        "choice2":
+        {
+          "text": "Death",
+          "id": 100
+        }
+      }
+    },
+
+
+    {
+      "id": 8,
+      "title": "As Good as Gold",
+      "text": "&emsp;You unsheathe a small, steel blade from a belt around your waste.  Pure adrenaline courses through your veins.  You recognize the foolishness of your decision but you decide to fight, regardless.  The dragon begins spewing flames from its nostrils.  It looks as if it's begun to choke on its own flame from laughter, \"The small one wishes to best me with a letter opener!  Such moxie, such stupidity!  How foolish are you?  That creature has lived more lifetimes than you can count!\"  Your body trembling, your breath shaking - your attempts to move are futile, as if your legs are flimsy branches sinking in muck.  \"How about this, my brave, little one,\" the dragon chortled, \"I'll give you all of my coin and riches in exchange for the Urushol.\"  You stand still, your blade at the ready, silently cursing your own stupidity.  \"Fine, so be it,\" the dragon spoke calmly.  The dragon inhaled deeply as if to let loose one final blaze, sealing your fate as another crumpled pile of bone and cinder in the dragon's lair.  You close your eyes anticipating the end.  Moments go by and no fiery inferno, no blistering agony, no white flash.  \"Am I dead?\" you think to yourself.  You open your eyes to an empty, hollowed out cavern.  No coin, no boulders, no dragon.  You look down at your feet, planted firmly on a mound of dirt, where a pile of coins should be.  Your vision begins to blur, your legs begin to wobble and your body gives way to the ground beneath you.\n",
+      "choices":
+      {
+        "choice1":
+        {
+          "text": "Victory",
+          "id": 99
+        },
+        "choice2":
+        {
+          "text": "Victory",
+          "id": 99
+        }
+      }
+    },
+
+    {
+      "id": 9,
+      "title": "Tooth and Nail",
+      "text": "&emsp;You silently unsheathe the small, steel blade given to you by your grandfather, plant your hand firmly in the earth, pivot your torso and push off the earth at full speed towards the creatures. The smallest of the bunch, carrying a heap of treasure in both hands, reacts to your pursuit, lets out a shriek which then notifies the others.  The creatures have short, stumpy statures - less than a meter in height - long snouts that fail to conceal an overbite, showing off three, long dagger-like teeth.  \"Kobolds\", you conclude.  Grave-robbing, sniveling rodents that rummage abandoned, underground locations in search for treasure - usually willingly commissioning their work to larger, more powerful beasts for security's sake. <br><br/>\n&emsp;The creatures let out a collective wail, hobbling away as fast as their little legs can take them.  The largest of the group immediately drops the Urushol to the ground, tailing off into the darkness just beyond the opposite colonnade.  One of the others, likely the leader, begins angrily chirping in its native tongue at the two other visible kobolds as they shimmy into a small hole in the ground on the other side of the tomb.  You unsheathe your blade and approach the Urushol.  Suddenly, from the same corner the larger kobold disappeared into, an eruption of stone and bits of ceramic burst towards the center of the courtyard.  A tree wrapped in chain and spikes emerges from a cloud of dust, followed by a creature towering above the largest of the pillars - a mountain troll.  \nOn the left shoulder of the lumbering beast sits a creature barely taller than that of a kobold, donning what appears to be ceremonial armor, clutching a crooked, wooden staff.  The troll drops it's head and begins rushing headfirst towards you.  It's rider cackles as it grips a section of chain-link wrapped around the troll's neck.  You instinctively dive perpendicular to the oncoming threat, hop to your feet and draw your weapon once more.  The troll careens into the colonnade from which you slept prior, collapsing a handful of pillars.  After rubbing it's built-in battering-ram of a forehead, the troll turns around, snorts and begins another run, this time rearing back it's club preparing to swing.  You roll to the opposite side of the troll and begin sprinting towards the trolls exposed leg.  You well up with adrenaline and roar at your aggressor, swinging your blade across the back of the trolls knee.  The troll lets loose a guttural scream followed by a reactive swing of his tree.  Caught off guard by the trolls swing, you're struck directly in the chest and thrown into a dilapidated coffer at the other end of the courtyard. <br><br/>\n&emsp;After hours of lying unconscious, you shake free from your comatose state.  The courtyard is silent again.  You stand up, guarding your left ribcage in one hand and your blade in the other.  You limp to the location where the Urushol lay prior to the assault,  only to find a severed troll head and shards of what appears to be the rider's broken staff.  In shock, your eyes search the courtyard for any clues.  At the end of the courtyard you make out a human child wearing dirty, cotton fibers covered in blood playing in the dirt.  You wearily limp toward the girl, maintaining a tight grip on your blade.  The girl notices your approach, turns her head and stares deeply into your eyes.  You drop your blade, stop and stare back into hers - filled with circulating, oily fluid.\n",
+      "choices":
+      {
+        "choice1":
+        {
+          "text": "Victory",
+          "id": 99
+        },
+        "choice2":
+        {
+          "text": "Victory",
+          "id": 99
+        }
+      }
+    },
+
+    {
+      "id": 10,
+      "title": "Cowards Die Before Their Death",
+      "text": "&emsp;You don your hood and crouch low to the ground as you sneak across the pillars shrouded by darkness.  You maintain vision of the creatures at the center of the courtyard who are now dragging the Urushol towards a broken portion of the courtyard, leading to another path down the chasm.  Down the path you hear slow, heavy footsteps accompanied by guttural shrieks.  The creatures at the center of the path hear the sounds and immediately disperse, leaving the Urushol just beyond the skirting of the diamond-shaped tomb.  You approach the exiting archway leading to the final section of the pass.  Before exiting the courtyard, you notice the creature responsible for the heavy footsteps materialize from the darkness - a mountain troll.  On the left shoulder of the mountain troll sits a creature approximately the same size as the other small creatures, donning what appears to be some form of ceremonial armor, clutching a gnarled, wooden staff.  The small creature taps the troll on its head with its staff, causing it to kneel low enough to dismount.  Upon dismounting, the creature prods at the Urushol checking for signs of life.  After deeming the Urushol deceased, a low hum emits from the creatures staff, discharging a greenish vapor.   After a few moments, the small creature lets out a confused bleat, followed by a distressed call to its mount, indicating that it's time to leave.  You share the same conclusion you suspect the small creature came to - the Urushol was dead.  You walk through the archway and begin your descent down the last leg of the pass.  After not more than a few steps, you feel a pulsating rumble from beneath the cavern floor, as if the caverns themselves were mumbling.  The deeper, trapped rumbling intensifies causing the hollowed membrane of the cavern to shake free any unstable projections.  You begin to sprint through the open cavern, avoiding precariously mounted stone while vaulting over cracks forming between larger formations.  As you leap between a section of splitting ground, a larger hanging formation is jettisoned into a rocky outcrop adjacent to your destination, causing you to lose your balance.   You spin wildly to regain control, only to plunge into the darkness below.\n",
+      "choices":
+      {
+        "choice1":
+        {
+          "text": "Death",
+          "id": 99
+        },
+        "choice2":
+        {
+          "text": "Death",
+          "id": 99
+        }
+      }
+    },
+    {
+      "id": 11,
+      "title": "Left Cold",
+      "text": "&emsp;The path to Juniper was quite boring.  So boring that you died.  Perhaps you should be a bit more adventurous",
+      "choices":
+      {
+        "choice1":
+        {
+          "text": "Death",
+          "id": 100
+        },
+        "choice2":
+        {
+          "text": "Death",
+          "id": 100
+        }
+      }
+    }
+  ]
+}

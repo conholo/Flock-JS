@@ -1,7 +1,7 @@
-import * as THREE from './vendor/three.module.js';
-import {OrbitControls} from './vendor/OrbitControls.js';
-import { GUI } from './vendor/dat.gui.module.js';
-import Stats from './vendor/stats.module.js'
+import * as THREE from '../vendor/three.module.js';
+import {OrbitControls} from '../vendor/OrbitControls.js';
+import { GUI } from '../vendor/dat.gui.module.js';
+import Stats from '../vendor/stats.module.js'
 
 let controls, camera, scene, renderer, group, clock, stats;
 let particleSimulationElement;

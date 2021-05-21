@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Adventure</title>
+    <link rel="stylesheet" href="../css/text_adventure.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script type='module' src="../js/text_adventure.js" defer></script>
+</head>
+<body>
+    <div class="nav-wrapper">
+
+        <div class="left-side">
+            <div class="nav-link-wrapper">
+                <a href="home.html">Home</a>
+            </div>
+
+            <div class="nav-link-wrapper">
+                <a href="flocking.html">Flocking Simulation</a>
+            </div>
+
+            <div class="nav-link-wrapper">
+                <a href="wordsearch.html">Word Search</a>
+            </div>
+
+            <div class="nav-link-wrapper active-nav-link">
+                <a href="text-adventure.html">Text Adventure</a>
+            </div>
+
+        </div>
+
+        <div class="right-side">
+            <div class="brand">
+                <div>CW</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="text-adventure-container">
+        <label style="font-size: 25px" id="paragraph-label" for="main-text">Path</label>
+        <p style="font-family:georgia,garamond,serif;font-size:16px;" id="main-text"></p>
+        <div id="text-adventure-button-container">
+            <button class ="choice-button" type="button" id="choice1-button">
+                <p id="choice1-text"></p>
+            </button>
+            <button class ="choice-button" type="button" id="choice2-button">
+                <p id="choice2-text"></p>
+            </button>
+        </div>
+
+        <a id="tree-download" href="../assets/files/TextAdventureDecisionTree.pdf" download>
+            <img src="../assets/images/hierarchical-structure.png" alt="Decision Tree PDF Download" >
+        </a>
+    </div>
+
+</body>
+</html>

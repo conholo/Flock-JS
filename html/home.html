@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <script src="../js/home_scrolling_carousel.js" defer></script>
+    <script src="../js/audio_visualizer.js" defer></script>
+
+</head>
+<body>
+    <div class="nav-wrapper">
+        <div class="left-side">
+            <div class="nav-link-wrapper active-nav-link">
+                <a href="home.html">Home</a>
+            </div>
+
+            <div class="nav-link-wrapper">
+                <a href="flocking.html">Flocking Simulation</a>
+            </div>
+
+            <div class="nav-link-wrapper">
+                <a href="wordsearch.html">Word Search</a>
+            </div>
+
+            <div class="nav-link-wrapper">
+                <a href="text-adventure.html">Text Adventure</a>
+            </div>
+
+        </div>
+
+        <div class="right-side">
+            <div class="brand">
+                <div>CW</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="home-center-container">
+        <canvas id="visualizer" height="500" width="500"></canvas>
+        <div class="about-me-container">
+            <div id="about-me">
+                <p>Hi, I'm Connor.<br><br/>I like making games, graphics and problem solving.<br><br/> I don't like web development.</p>
+            </div>
+            <input id="play-button" type="button" />
+            <audio id="source_music" src="../assets/audio/audio_track.mp3"></audio>
+        </div>
+        <canvas id="visualizer2" height="500" width="500"></canvas>
+    </div>
+
+
+
+    <div id = "main-slide-show-container" class="main-slide-show-container">
+        <div class="slide-show-item">
+            <a href="https://threejs.org/"><img src="../assets/images/three.js.png"/></a>
+        </div>
+        <div class="slide-show-item">
+            <a href="https://www.khronos.org/opengl/"><img src="../assets/images/opengl_logo.png"/></a>
+        </div>
+        <div class="slide-show-item">
+            <a href="https://unity.com/"><img src="../assets/images/unitylogo.jpg"/></a>
+        </div>
+        <div class="slide-show-item">
+            <a href="https://www.unrealengine.com/en-US/"><img src="../assets/images/unreal.jpg"/></a>
+        </div>
+
+
+        <div id="carousel-button-container">
+            <button class='carousel-button' id ='previous-button'  type="button">
+                <img src="../assets/images/right-arrow%20(1).png">
+            </button>
+            <button class='carousel-button' id ='next-button' type="button">
+                <img src="../assets/images/right-arrow%20(1).png">
+            </button>
+        </div>
+    </div>
+
+
+</body>
+</html>

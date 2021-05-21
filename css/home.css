@@ -1,0 +1,114 @@
+html, body {
+    background: url(../assets/images/home_bg2.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.main-slide-show-container {
+    top: 70%;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    position: absolute;
+}
+
+.slide-show-item >* img {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+    height: 20vh;
+    width: 500px;
+    border-radius: 30px;
+}
+
+#carousel-button-container{
+    position: relative;
+    bottom: -30px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+
+    display: inline-flex;
+    align-items: center;
+}
+
+.carousel-button {
+    background-color: transparent;
+    border: none;
+}
+
+#next-button img {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    left:55%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#previous-button img {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    left:45%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotateZ(180deg);
+}
+
+
+.carousel-button {
+    width: 10%;
+    float: left;
+}
+
+.home-center-container {
+    display:grid;
+    grid-auto-flow: column;
+    grid-gap: 0;
+    justify-content: center;
+}
+
+.about-me-container {
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 500px;
+    border: 5px solid cyan;
+    background-image: linear-gradient(magenta, darkblue);
+    mix-blend-mode: hard-light;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+}
+
+#about-me {
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    color: yellow;
+    font-weight: bolder;
+}
+
+#play-button {
+    position: absolute;
+    top: 45%;
+    right: 49%;
+    width: 30px;
+    border-radius: 10px;
+    height: 30px;
+    background-image: url(../assets/images/pause-play.png);
+    background-color: transparent;
+    border: none;
+    background-size: cover;
+}
+
+#play-button:hover{
+    transform: scale(1.3, 1.3);
+    box-shadow: 0 0 10px #fff;
+}

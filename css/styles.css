@@ -1,7 +1,7 @@
 html,body
 {
     background-color: black;
-    font-family: "Lato", sans-serif;
+    font-family: "Courier New", serif;
     height: 100%;
     width:100%;
     margin: 0;
@@ -48,6 +48,12 @@ html,body
 {
     border-bottom: 1px solid white;
 }
+
+button {
+    font-family : inherit;
+    font-size: 1em;
+}
+
 
 .active-nav-link
 {

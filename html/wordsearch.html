@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Word Search</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="wordsearchstyles.css">
-    <script src="word_search.js" defer></script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/wordsearchstyles.css">
+    <script type='module' src="../js/word_search_main.js" defer></script>
 </head>
 <body>
     <div class="nav-wrapper">
@@ -22,6 +22,10 @@
                 <a href="wordsearch.html">Word Search</a>
             </div>
 
+            <div class="nav-link-wrapper">
+                <a href="text-adventure.html">Text Adventure</a>
+            </div>
+
         </div>
 
         <div class="right-side">
@@ -31,6 +35,10 @@
         </div>
     </div>
 
+    <div id="instructions-text" style="display:none">
+        <p>Left click on the cell that marks the first letter of a word, then shift + left click on the cell that marks the last letter of the word.</p>
+    </div>
+
     <div class="word-search-container" id="word-search-container">
         <form id="word-search-form">
             <fieldset>
@@ -38,9 +46,8 @@
 
                 <p>
                     Hi!  Welcome to the Word Search Generator!  Please select a difficulty level then start adding <br><br/>
-                    some words.  Depending on the length of the word, the size of your word search (difficulty), not <br><br/>
-                    all words will be added to the word search.  You won't know which words were added, but you will be <br><br/>
-                    notified of the number of words that were added!
+                    some words.  If you'd prefer not to add your own words, the generator will come up with some for you! <br><br/>
+                    The results of the search generation will appear as a word bank next to the word search. <br><br/> Enjoy!
                 </p>
                 <br><br/>
 
@@ -60,20 +67,29 @@
 
                 <br><br/>
 
-                <label> Enter a word:
-                    <input type="text" id="enter-word-input" onkeyup="validateUserInput()"/>
+                <label> Enter your own words?
+                    <input type="checkbox" id='user_words_checkbox' value="user_words" checked>
                 </label>
-                <label id="invalid-input"></label>
-                <br><br/>
-                <button type="button" id="submit-word-button" onclick="onUserSubmitWord()" disabled>Submit Word</button>
-                <br><br/>
-                <button type="submit" disabled id="submit-form-button">Submit Search Data</button>
 
-                <div class="user-words-container">
-                    <label class="user-words-label">Your Words:</label>
-                    <ol id='word-list' class="user-words-list"></ol>
+                <br><br/>
+
+                <div id="user_enter_word_container">
+                    <label> Enter a word:
+                        <input type="text" id="enter-word-input"/>
+                    </label>
+                    <label id="invalid-input"></label>
+                    <br><br/>
+                    <button type="button" id="submit-word-button" disabled>Submit Word</button>
+                    <br><br/>
                 </div>
 
+                <div class="word-container-element" id="user-words-container">
+                    <label class="word-container-element">Your Words:</label>
+                    <ol id='word-list' class="word-container-element"></ol>
+                </div>
+                <br><br/>
+
+                <button type="submit" disabled id="submit-form-button">Submit Search Data</button>
             </fieldset>
 
         </form>

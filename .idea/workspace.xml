@@ -23,10 +23,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cbffcfe-4f5c-4356-9231-4cf81aad88a9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/audio/audio_track.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/files/TextAdventureDecisionTree.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/files/text_adventure.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/files/words.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/hierarchical-structure.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/home_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/home_bg2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/left-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/opengl_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/pause-play.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/right-arrow (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/right-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/text_adventure_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/text_adventure_bg2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/three.js.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/unitylogo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/unreal.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/text_adventure.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/wordsearchstyles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/text-adventure.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/audio_visualizer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/home_scrolling_carousel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/text_adventure.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/word_search_main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/word_search_utility.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/flocking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flocking.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/flocking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/flocking_sim.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/word_search.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/word_search_generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordsearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/wordsearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordsearchstyles.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +67,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="CSS File" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -54,6 +85,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -62,7 +94,21 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Connor\WebstormProjects\FlockingSim" />
+      <recent name="C:\Users\Connor\WebstormProjects\FlockingSim\js" />
+      <recent name="C:\Users\Connor\WebstormProjects\FlockingSim\assets\files" />
+      <recent name="C:\Users\Connor\WebstormProjects\FlockingSim\css" />
+      <recent name="C:\Users\Connor\WebstormProjects\FlockingSim\html" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Connor\WebstormProjects\FlockingSim\assets\images" />
+      <recent name="C:\Users\Connor\WebstormProjects\FlockingSim\assets" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -81,7 +127,21 @@
       <workItem from="1619587938469" duration="213000" />
       <workItem from="1619646896910" duration="2675000" />
       <workItem from="1619724474171" duration="69000" />
-      <workItem from="1619724988672" duration="18118000" />
+      <workItem from="1619724988672" duration="18407000" />
+      <workItem from="1619800040479" duration="685000" />
+      <workItem from="1620583941424" duration="18511000" />
+      <workItem from="1620612980597" duration="9359000" />
+      <workItem from="1620675699128" duration="449000" />
+      <workItem from="1620676295699" duration="53000" />
+      <workItem from="1621255303045" duration="17854000" />
+      <workItem from="1621306544613" duration="355000" />
+      <workItem from="1621341338175" duration="23283000" />
+      <workItem from="1621369867532" duration="617000" />
+      <workItem from="1621370931790" duration="1006000" />
+      <workItem from="1621387738714" duration="4384000" />
+      <workItem from="1621428173240" duration="1871000" />
+      <workItem from="1621515112780" duration="28982000" />
+      <workItem from="1621565848196" duration="7892000" />
     </task>
     <servers />
   </component>
@@ -98,23 +158,36 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1619536259083">
+    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1621391936952">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1619536259083" />
+    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1621391936952" />
     <state x="690" y="461" key="GitCloneDialog" timestamp="1619484135163">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="690" y="461" key="GitCloneDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1619484135163" />
-    <state x="616" y="250" key="run.anything.popup" timestamp="1619547495818">
+    <state x="742" y="242" key="RollbackChangesDialog" timestamp="1620588802126">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="616" y="250" key="run.anything.popup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1619547495818" />
-    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1619753569591">
+    <state x="742" y="242" key="RollbackChangesDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1620588802126" />
+    <state x="461" y="185" key="SettingsEditor" timestamp="1620676347394">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1619753569591" />
+    <state x="461" y="185" key="SettingsEditor/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1620676347394" />
+    <state x="561" y="150" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1621527541664">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="561" y="150" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1621527541664" />
+    <state x="616" y="250" key="run.anything.popup" timestamp="1620602369812">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="616" y="250" key="run.anything.popup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1620602369812" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1621261274704">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1621261274704" />
   </component>
 </project>

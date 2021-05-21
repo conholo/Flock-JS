@@ -1,0 +1,132 @@
+.html, body {
+    background: url(../assets/images/text_adventure_bg2.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#tree-download {
+    position: absolute;
+    bottom: 0;
+}
+
+#tree-download img:hover {
+    transform: scale(1.3)
+}
+
+#tree-download img {
+    width: 64px;
+    height: 64px;
+}
+
+.text-adventure-container{
+    margin-top: auto;
+    margin-bottom: auto;
+
+    display:grid;
+    grid-auto-flow: row;
+    justify-content: center;
+    grid-gap: 5px;
+    color: white;
+}
+
+.text-adventure-container > label{
+    text-align: center;
+}
+
+.text-adventure-container #main-text{
+    width: 600px;
+    height: 500px;
+    overflow-y: scroll;
+    top: 50%;
+    left: 50%;
+    position: relative;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#choice1-button {
+    width: 500px;
+    background-image: url(../assets/images/ChoiceBackground.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    background-size: 200px;
+    background-position: top;
+}
+
+#choice1-text {
+    width: 25%;
+    height: 50%;
+    top: 15%;
+    left: 50%;
+    position: relative;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#choice1-button:hover{
+    transform: scale(1.1);
+}
+
+#choice2-button:hover{
+    transform: scale(1.1);
+}
+
+
+#choice2-text {
+    width: 25%;
+    height: 50%;
+    top: 15%;
+    left: 50%;
+    position: relative;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+
+#choice2-button {
+    width: 500px;
+    background-image: url(../assets/images/ChoiceBackground.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    background-size: 200px;
+    background-position: top;
+}
+
+
+#text-adventure-button-container {
+    display: inline-flex;
+    width: 600px;
+    height: 300px;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #fdfdfd;
+}
+::-webkit-scrollbar-corner {
+    color: #000000;
+}

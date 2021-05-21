@@ -1,4 +1,3 @@
-
 class GridCell {
 
     constructor(character, row, column, cellElement) {
@@ -6,6 +5,7 @@ class GridCell {
         this.row = row;
         this.column = column;
         this.cellElement = cellElement;
+        this.isWordCharacter = false;
 
         this.cellElement.innerHTML = character;
     }
@@ -16,19 +16,82 @@ class GridCell {
     }
 }
 
+class WordHolder {
+
+    constructor(word, startCell, endCell, betweenCells, solution) {
+
+        this.solved = false;
+        this.word = word;
+        this.startGridCell = startCell;
+        this.endGridCell = endCell;
+        this.betweenCells = betweenCells;
+        this.solution = solution;
+        this.solutionElement = document.createElement('li');
+        this.solutionElement.innerHTML = word;
+    }
+
+    handleOnSolvedWord() {
+        this.solved = true;
+        this.startGridCell.cellElement.className = 'solved';
+        this.startGridCell.solved = true;
+        for(let i = 0; i < this.betweenCells.length; i++) {
+            this.betweenCells[i].cellElement.className = 'solved';
+            this.betweenCells[i].solved = true;
+        }
+        this.endGridCell.cellElement.className = 'solved';
+        this.endGridCell.solved = true;
+        this.solutionElement.innerHTML = this.word.strike();
+    }
+}
+
 class Grid {
 
-    constructor(rows, columns) {
+    constructor(rows, columns, onGameFinished) {
         this.rows = rows;
         this.columns = columns;
-        this.lastClicked = null;
+        this.lastStartCellClicked = null;
+        this.lastEndCellClicked = null;
         this.grid = createNArray(rows, columns);
         this.gridSize = rows * columns;
+        this.wordHolders = [];
         this.generateGrid(rows, columns)
+        this.solveCount = 0;
+        this.onGameFinished = onGameFinished;
+    }
+
+    validateOnEndCellSelected() {
+
+        let solved = false;
+        for(let i = 0; i < this.wordHolders.length; i++) {
+
+            let wordHolder = this.wordHolders[i];
+
+            if(wordHolder.solved) continue;
+
+            if(wordHolder.startGridCell !== this.lastStartCellClicked || wordHolder.endGridCell !== this.lastEndCellClicked)
+                continue;
+            solved = true;
+            wordHolder.handleOnSolvedWord();
+            break;
+        }
+
+        if(!solved){
+            this.lastStartCellClicked.cellElement.className = this.lastStartCellClicked.solved ? 'solved' : '';
+            this.lastEndCellClicked.cellElement.className = this.lastEndCellClicked.solved ? 'solved' : '';
+        }else{
+            this.solveCount++;
+            if(this.solveCount === this.wordHolders.length) {
+                this.onGameFinished();
+            }
+        }
+
+        this.lastStartCellClicked = null;
+        this.lastEndCellClicked = null;
     }
 
     generateGrid(rows, columns) {
         let grid = document.createElement('table');
+        grid.id = 'word-search-table';
         grid.className = 'grid';
         for (let row = 0; row < rows; ++row) {
 
@@ -37,12 +100,37 @@ class Grid {
             for (let column = 0; column < columns; ++column) {
 
                 let cellElement = rowElement.appendChild(document.createElement('td'));
-                cellElement.addEventListener('click', function(){
-                    gridCell.cellElement.className = 'clicked';
+                cellElement.style.userSelect = 'none';
+                cellElement.addEventListener('click', function(e){
 
-                    if(this.lastClicked) this.lastClicked.cellElement.className = '';
+                    if(e.shiftKey && this.lastStartCellClicked) {
+                        gridCell.cellElement.className = 'end-cell';
+                        this.lastEndCellClicked = gridCell;
 
-                    this.lastClicked = gridCell;
+                        this.validateOnEndCellSelected();
+
+                    }else {
+
+                        // Reset if user clicks on the already selected start cell.
+                        if(this.lastStartCellClicked && this.lastStartCellClicked === gridCell) {
+                            this.lastStartCellClicked.cellElement.className = this.lastStartCellClicked.solved ? 'solved' : '';
+                            this.leftClickStartCell = null;
+
+                            // If there was an end click cell
+                            if(this.lastEndCellClicked) {
+
+                                this.lastEndCellClicked.cellElement.className = this.lastEndCellClicked.solved ? 'solved' : '';
+                                this.lastEndCellClicked = null;
+                            }
+
+                            return;
+                        }
+                        else if (this.lastStartCellClicked) {
+                            this.lastStartCellClicked.cellElement.className = this.lastStartCellClicked.solved ? 'solved' : '';
+                        }
+                        gridCell.cellElement.className = 'start-cell';
+                        this.lastStartCellClicked = gridCell;
+                    }
 
                 }.bind(this));
 
@@ -88,6 +176,7 @@ function createWordSearch(words, grid) {
 
         // Reset all objects on new attempt.
         shuffle(words);
+        grid.wordHolders = [];
         grid.resetGrid();
         solutions = [];
 
@@ -99,13 +188,7 @@ function createWordSearch(words, grid) {
             cellsFilled += tryPlaceWord(grid, word);
 
             if(cellsFilled === target) {
-
-                if(solutions.length >= minWords) {
-
-                    attempts = attemptCount;
-                    return true;
-                }
-                break;
+                return true;
             }
         }
 
@@ -161,12 +244,25 @@ function tryLocationForWord(grid, word, direction, position) {
         rowCheck += directions[direction][1];
     }
 
+    let startCell = null;
+    let endCell = null;
+    let betweenCells = [];
     for(index = 0, rowCheck = row, columnCheck = column; index < length; index++) {
 
-        if(grid.grid[rowCheck][columnCheck].character === word[index])
+        if(grid.grid[rowCheck][columnCheck].character === word[index]){
             overlaps++;
-        else
+        }
+        else{
             grid.grid[rowCheck][columnCheck].setCharacter(word[index]);
+        }
+
+        if(index === 0)
+            startCell = grid.grid[rowCheck][columnCheck]
+        else if (index === length - 1)
+            endCell = grid.grid[rowCheck][columnCheck]
+        else
+            betweenCells.push(grid.grid[rowCheck][columnCheck])
+
 
         if(index < length - 1) {
 
@@ -179,8 +275,10 @@ function tryLocationForWord(grid, word, direction, position) {
 
     if(lettersPlaced > 0)
     {
-        let solution = `${word},${-10} (${column},${row})(${columnCheck},${rowCheck})`;
-        solutions.push(solution);
+        const solution = `(First: ${column},${row})(Last: ${columnCheck},${rowCheck})`;
+
+        const wordHolder = new WordHolder(word, startCell, endCell, betweenCells, solution);
+        grid.wordHolders.push(wordHolder);
     }
 
     return lettersPlaced;
@@ -198,6 +296,7 @@ function createNArray(length) {
     return arr;
 }
 
+// Fisher Yates Shuffle
 function shuffle(list) {
 
     let size = list.length;
@@ -214,12 +313,6 @@ function shuffle(list) {
 }
 
 
-const minWords = 15;
-let attempts = 0;
-const words = [
-
-]
-
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
 let solutions = [];
@@ -235,89 +328,32 @@ const directions = [
     [1, -1]
 ]
 
-const difficultyValues = {
-    "very easy" : 5,
-    "easy" : 10,
-    "intermediate": 15,
-    "hard" : 20
+
+function sortWordHolders(holderA, holderB) {
+
+    if(holderA.word > holderB.word)
+        return 1;
+    if(holderA.word < holderB.word)
+        return -1;
+    return 0;
 }
 
-let form = document.getElementById('word-search-form');
-function onSubmitForm(event) {
-    event.preventDefault();
+export function generateWordSearch(words, rows, columns, onGameFinished) {
+    const grid = new Grid(rows, columns, onGameFinished);
 
-    let difficultyRadios = document.getElementsByName("difficulty");
+    createWordSearch(words, grid);
 
-    let checkedRadio = null;
-    let rows, columns = 0;
-
-    for(let i = 0; i < difficultyRadios.length; i++) {
-        if(difficultyRadios[i].checked)
-            checkedRadio = difficultyRadios[i];
-    }
-
-    rows = difficultyValues[checkedRadio.value];
-    columns = difficultyValues[checkedRadio.value];
-
-    document.getElementById('word-search-container').hidden = true;
-
-    const grid = new Grid(rows, columns);
-    let result = createWordSearch(words, grid);
     fillRemainingCells(grid);
 
-    const solutionsListing = document.createElement('li');
-
-    for(let solution of solutions) {
-
-        let solutionText = document.createTextNode(solution);
-        solutionsListing.appendChild(solutionText);
-    }
-
+    const solutionsListing = document.createElement('ol');
+    solutionsListing.id = 'solutions';
     solutionsListing.style.color = 'white';
-    document.body.appendChild(solutionsListing);
-}
 
-form.addEventListener('submit', onSubmitForm);
+    let sortedWords = grid.wordHolders.sort(sortWordHolders);
 
-function validateUserInput() {
-    const userTextInput = document.getElementById("enter-word-input");
-    const submitWordButton = document.getElementById('submit-word-button');
-
-    const invalidTextElement = document.getElementById("invalid-input");
-    let regexExpression = /^[a-zA-Z]+$/;
-
-    if(!regexExpression.test(userTextInput.value)){
-
-        if(userTextInput.value.length > 0) {
-            invalidTextElement.innerHTML = "Invalid character detected.  Please only enter characters.";
-        }else{
-            invalidTextElement.innerHTML = "";
-            submitWordButton.disabled = true;
-        }
-        submitWordButton.disabled = true;
+    for(let i = 0; i < sortedWords.length; i++) {
+        solutionsListing.appendChild(sortedWords[i].solutionElement);
     }
-    else{
-        invalidTextElement.innerHTML = "";
-        submitWordButton.disabled = false;
-    }
+
+    return [grid, solutionsListing];
 }
-
-
-function onUserSubmitWord() {
-    const userTextInput = document.getElementById("enter-word-input");
-    const wordList = document.getElementById("word-list");
-
-    let listItem = document.createElement('li');
-    listItem.innerHTML = userTextInput.value.toUpperCase();
-    wordList.appendChild(listItem);
-    words.push(userTextInput.value.toUpperCase());
-
-    if(words.length > 0) {
-        const submitFormButton = document.getElementById('submit-form-button');
-        submitFormButton.disabled = false;
-    }
-}
-
-
-
-
